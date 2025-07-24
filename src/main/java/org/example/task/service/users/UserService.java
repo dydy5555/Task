@@ -1,15 +1,17 @@
 package org.example.task.service.users;
 
 import jakarta.transaction.Transactional;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
+import org.example.task.exception.IllegalPasswordException;
+import org.example.task.exception.NotFoundExceptionClass;
+import org.example.task.exception.UserAlreadyExistsException;
+import org.example.task.payload.user.ChangePassword;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.example.task.common.Provider;
 import org.example.task.common.Role;
 import org.example.task.config.jwt.JwtUtil;
-import org.example.task.model.request.UserLogin;
-import org.example.task.model.request.UserRegister;
-import org.example.task.model.response.UserLoginResponse;
+import org.example.task.payload.user.UserLogin;
+import org.example.task.payload.user.UserRegister;
+import org.example.task.payload.user.UserLoginResponse;
 import org.example.task.model.user.Users;
 import org.example.task.repository.users.UserRepository;
 import org.springframework.context.annotation.Lazy;
@@ -30,20 +32,19 @@ public class UserService {
         this.utils = utils;
     }
 
-
     public Users getUserDetails(String phoneNumber, String provider) {
         if (phoneNumber == null || phoneNumber.isEmpty()) {
             throw new RuntimeException("Phone number cannot be null or empty");
         }
-        Optional<Users> userOptional = userRepository.findByPhoneNumberAndProvider(phoneNumber, Provider.valueOf(provider));
-        return userOptional.orElseThrow(() -> new RuntimeException("User not found with the provided Gmail and phone number"));
+        Optional<Users> userOptional = userRepository.findByPhoneNumberOrGmailAndProvider(phoneNumber,phoneNumber, Provider.valueOf(provider));
+        return userOptional.orElseThrow(() -> new NotFoundExceptionClass("User not found with the provided Gmail and phone number"));
     }
 
     @Transactional
     public UserLoginResponse registerUser(UserRegister request) {
-//        if(request.getProvider().equals(Provider.CREDENTIAL)){
-//            validateUserRegistration(request);
-//        }
+        if(request.getProvider().equals(Provider.CREDENTIAL)){
+            validateUserRegistration(request);
+        }
         Users saveUser = setUserDetails(request);
         request.setToken(utils.generateToken(saveUser));
         request.setStatus(true);
@@ -51,15 +52,17 @@ public class UserService {
     }
 
     public UserLoginResponse loginUser(UserLogin request) {
-        String phoneNumber = request.getPhoneNumber().startsWith("0") ?
-                request.getPhoneNumber() : "0" + request.getPhoneNumber();
-        Users user = userRepository.findByPhoneNumberAndProvider(phoneNumber, Provider.CREDENTIAL)
-                .orElseThrow(() -> new RuntimeException("Invalid phone number or password"));
+        String phoneOrEmail = request.getPhoneOrGmail();
+
+        Users user = userRepository.findByPhoneNumberOrGmailAndProvider(
+                        phoneOrEmail, phoneOrEmail, Provider.CREDENTIAL)
+                .orElseThrow(() -> new NotFoundExceptionClass("Invalid phone number or email"));
+
         if (!passwordEncoder.matches(request.getPassword(), user.getPassword())) {
-            throw new RuntimeException("Invalid phone number or password");
+            throw new NotFoundExceptionClass("Invalid password");
         }
         if(!user.getStatus()){
-            throw new RuntimeException("Invalid phone number or password");
+            throw new NotFoundExceptionClass("Invalid phone number or password");
         }
         return buildUserRegisterResponse(user);
     }
@@ -104,5 +107,29 @@ public class UserService {
         response.setModifiedDate(user.getModifiedDate());
         response.setLoginTime(ZonedDateTime.now());
         return response;
+    }
+
+    private void validateUserRegistration(UserRegister request) {
+        if (userRepository.existsByGmailAndProvider(request.getGmail(), Provider.CREDENTIAL)) {
+            throw new UserAlreadyExistsException("A user with this email already exists.");
+        }
+
+        if (userRepository.existsByPhoneNumberAndProvider(request.getPhoneNumber(), Provider.CREDENTIAL)) {
+            throw new UserAlreadyExistsException("A user with this phone number already exists.");
+        }
+    }
+
+    public Boolean changePassword (ChangePassword changePassword){
+        Optional<Users> userOptional = userRepository.findByPhoneNumberOrGmailAndProvider(changePassword.getPhoneNumber(),changePassword.getPhoneNumber(), Provider.CREDENTIAL);
+        if (userOptional.isEmpty()) {
+            throw new IllegalPasswordException("User not found");
+        }
+        Users user = userOptional.get();
+        if (!passwordEncoder.matches(changePassword.getCurrentPassword(), user.getPassword())) {
+            throw new IllegalPasswordException("Current password is incorrect");
+        }
+        user.setPassword(passwordEncoder.encode(changePassword.getNewPassword()));
+        userRepository.save(user);
+        return true;
     }
 }

@@ -1,4 +1,4 @@
-package org.example.task.model.response;import lombok.AllArgsConstructor;
+package org.example.task.payload.user;import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.example.task.common.Provider;

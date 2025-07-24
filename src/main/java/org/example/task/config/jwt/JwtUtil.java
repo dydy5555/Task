@@ -1,21 +1,17 @@
 package org.example.task.config.jwt;
 
 import io.jsonwebtoken.Claims;
-import io.jsonwebtoken.JwtException;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
-import io.jsonwebtoken.security.Keys;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
-import lombok.Value;
-import org.example.task.model.request.LoginRequest;
+
 import org.example.task.model.user.Users;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import java.io.Serializable;
-import java.util.*;
 import java.util.function.Function;
 
-import java.security.Key;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -23,17 +19,15 @@ import java.util.Map;
 
 @Component
 @AllArgsConstructor
-
+@NoArgsConstructor
 public class JwtUtil implements Serializable {
-    private final String secret;
-    private final Long expirationTime;
-    private final Key key = Keys.secretKeyFor(SignatureAlgorithm.HS256);
-    public JwtUtil() {
-        this.secret = "verystrongjwtsecretkeythatishardtotrickyousuperlong";
-        this.expirationTime = 3600000L; // 1 hour
-    }
+    private static final long serialVersionUID = -2550185165626007488L;
 
-    private final long EXPIRATION = 1000 * 60 * 60;
+    @Value("${jwt.secret}")
+    private String secret;
+
+    @Value("${jwt.expiration}")
+    private Long expirationTime;
 
     public String generateToken(Users user) {
         Map<String, Object> claims = new HashMap<>();
@@ -48,7 +42,7 @@ public class JwtUtil implements Serializable {
                 .setClaims(claims)
                 .setIssuedAt(new Date(System.currentTimeMillis()))
                 .setExpiration(new Date(System.currentTimeMillis() + expirationTime))
-                .signWith(key)
+                .signWith(SignatureAlgorithm.HS512, secret)
                 .compact();
     }
 
@@ -96,7 +90,7 @@ public class JwtUtil implements Serializable {
     }
 
     private Claims getAllClaimsFromToken(String token) {
-        return Jwts.parserBuilder().setSigningKey(key).build().parseClaimsJws(token).getBody();
+        return Jwts.parser().setSigningKey(secret).parseClaimsJws(token).getBody();
     }
 
     private Boolean isTokenExpired(String token) {

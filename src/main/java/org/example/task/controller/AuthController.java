@@ -1,22 +1,23 @@
 package org.example.task.controller;
 
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import org.example.task.config.jwt.JwtUtil;
-import org.example.task.model.request.LoginRequest;
-import org.example.task.model.request.UserLogin;
-import org.example.task.model.request.UserRegister;
-import org.example.task.model.response.UserLoginResponse;
-import org.example.task.model.user.Users;
+import org.example.task.payload.user.ChangePassword;
+import org.example.task.payload.user.UserLogin;
+import org.example.task.payload.user.UserRegister;
+import org.example.task.payload.user.UserLoginResponse;
 import org.example.task.service.users.UserService;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Map;
+import java.util.Optional;
 
 @RestController
-@RequestMapping("/api/auth")
+@RequestMapping("/auth")
+@Tag(name = "Authorization", description = "🔏")
+@CrossOrigin
 public class AuthController {
 
     private final JwtUtil jwtUtil;
@@ -40,4 +41,9 @@ public class AuthController {
         return ResponseEntity.ok(newUser);
     }
 
+    @PutMapping("/change-password")
+    @Operation(summary = "change password")
+    public ResponseEntity<Boolean> changePassword (@Valid @RequestBody ChangePassword changePassword){
+    return ResponseEntity.ok(userService.changePassword(changePassword));
+    }
 }

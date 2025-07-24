@@ -9,5 +9,9 @@ import java.util.Optional;
 import java.util.UUID;
 
 public interface UserRepository extends JpaRepository<Users, UUID> {
-    Optional<Users> findByPhoneNumberAndProvider(String phoneNumber, Provider provider);
+    Optional<Users> findByPhoneNumberOrGmailAndProvider(String phoneNumber, String gmail, Provider provider);
+
+    Optional<Users> findByGmailAndProvider(String gmail, Provider provider);
+    boolean existsByGmailAndProvider(String gmail, Provider provider);
+    boolean existsByPhoneNumberAndProvider(String phoneNumber, Provider provider);
 }

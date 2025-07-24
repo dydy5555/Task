@@ -1,4 +1,4 @@
-package org.example.task.model.request;
+package org.example.task.payload.user;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.Column;
 import jakarta.persistence.EnumType;

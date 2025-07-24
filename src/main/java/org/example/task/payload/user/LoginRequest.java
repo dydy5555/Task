@@ -1,4 +1,4 @@
-package org.example.task.model.request;
+package org.example.task.payload.user;
 
 import lombok.Data;
 

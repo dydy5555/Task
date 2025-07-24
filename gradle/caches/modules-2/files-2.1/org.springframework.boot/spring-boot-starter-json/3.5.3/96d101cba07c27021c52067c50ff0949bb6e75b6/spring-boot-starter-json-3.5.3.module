@@ -1,0 +1,188 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "group": "org.springframework.boot",
+    "module": "spring-boot-starter-json",
+    "version": "3.5.3",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "8.14.2"
+    }
+  },
+  "variants": [
+    {
+      "name": "apiElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.version": 17,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-api"
+      },
+      "dependencies": [
+        {
+          "group": "org.springframework.boot",
+          "module": "spring-boot-starter",
+          "version": {
+            "requires": "3.5.3"
+          }
+        },
+        {
+          "group": "org.springframework",
+          "module": "spring-web",
+          "version": {
+            "requires": "6.2.8"
+          }
+        },
+        {
+          "group": "com.fasterxml.jackson.core",
+          "module": "jackson-databind",
+          "version": {
+            "requires": "2.19.1"
+          }
+        },
+        {
+          "group": "com.fasterxml.jackson.datatype",
+          "module": "jackson-datatype-jdk8",
+          "version": {
+            "requires": "2.19.1"
+          }
+        },
+        {
+          "group": "com.fasterxml.jackson.datatype",
+          "module": "jackson-datatype-jsr310",
+          "version": {
+            "requires": "2.19.1"
+          }
+        },
+        {
+          "group": "com.fasterxml.jackson.module",
+          "module": "jackson-module-parameter-names",
+          "version": {
+            "requires": "2.19.1"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "spring-boot-starter-json-3.5.3.jar",
+          "url": "spring-boot-starter-json-3.5.3.jar",
+          "size": 4748,
+          "sha512": "4b8f136f3668332473acc3c10b41188eb8fcdaef682fe7ae7bf08d69b6a5b35bec593d35828991340517dd6777b91ae5403c22e7b997841f6c1e9b3747dade84",
+          "sha256": "a2b8494185c6ecbc8af3003a539d877bf06230d0a9ad12a74747e9da56ef2808",
+          "sha1": "fe424c3edf444e65e3c3331a1538d31396225a3b",
+          "md5": "2771ee5aa3859bb38d368ec2637acaa7"
+        }
+      ]
+    },
+    {
+      "name": "runtimeElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.version": 17,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-runtime"
+      },
+      "dependencies": [
+        {
+          "group": "org.springframework.boot",
+          "module": "spring-boot-starter",
+          "version": {
+            "requires": "3.5.3"
+          }
+        },
+        {
+          "group": "org.springframework",
+          "module": "spring-web",
+          "version": {
+            "requires": "6.2.8"
+          }
+        },
+        {
+          "group": "com.fasterxml.jackson.core",
+          "module": "jackson-databind",
+          "version": {
+            "requires": "2.19.1"
+          }
+        },
+        {
+          "group": "com.fasterxml.jackson.datatype",
+          "module": "jackson-datatype-jdk8",
+          "version": {
+            "requires": "2.19.1"
+          }
+        },
+        {
+          "group": "com.fasterxml.jackson.datatype",
+          "module": "jackson-datatype-jsr310",
+          "version": {
+            "requires": "2.19.1"
+          }
+        },
+        {
+          "group": "com.fasterxml.jackson.module",
+          "module": "jackson-module-parameter-names",
+          "version": {
+            "requires": "2.19.1"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "spring-boot-starter-json-3.5.3.jar",
+          "url": "spring-boot-starter-json-3.5.3.jar",
+          "size": 4748,
+          "sha512": "4b8f136f3668332473acc3c10b41188eb8fcdaef682fe7ae7bf08d69b6a5b35bec593d35828991340517dd6777b91ae5403c22e7b997841f6c1e9b3747dade84",
+          "sha256": "a2b8494185c6ecbc8af3003a539d877bf06230d0a9ad12a74747e9da56ef2808",
+          "sha1": "fe424c3edf444e65e3c3331a1538d31396225a3b",
+          "md5": "2771ee5aa3859bb38d368ec2637acaa7"
+        }
+      ]
+    },
+    {
+      "name": "javadocElements",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "javadoc",
+        "org.gradle.usage": "java-runtime"
+      },
+      "files": [
+        {
+          "name": "spring-boot-starter-json-3.5.3-javadoc.jar",
+          "url": "spring-boot-starter-json-3.5.3-javadoc.jar",
+          "size": 4748,
+          "sha512": "60708948fc7922ff5c8cc8d008342cb94a7ac893591b152782552bca5cb278cb925e1ae0ad3a1750fdb4b9679db992604e9fb3b64c50a33a17cdb82e651711af",
+          "sha256": "38129127c693207223de46d9d715f33b6c0e44161df8bb359c6948ae41aed8b5",
+          "sha1": "b13f85e05c320a470373e082d80e6c039f39a55f",
+          "md5": "9e99c59e201f822d2ac108746b939e70"
+        }
+      ]
+    },
+    {
+      "name": "sourcesElements",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "sources",
+        "org.gradle.usage": "java-runtime"
+      },
+      "files": [
+        {
+          "name": "spring-boot-starter-json-3.5.3-sources.jar",
+          "url": "spring-boot-starter-json-3.5.3-sources.jar",
+          "size": 4748,
+          "sha512": "60708948fc7922ff5c8cc8d008342cb94a7ac893591b152782552bca5cb278cb925e1ae0ad3a1750fdb4b9679db992604e9fb3b64c50a33a17cdb82e651711af",
+          "sha256": "38129127c693207223de46d9d715f33b6c0e44161df8bb359c6948ae41aed8b5",
+          "sha1": "b13f85e05c320a470373e082d80e6c039f39a55f",
+          "md5": "9e99c59e201f822d2ac108746b939e70"
+        }
+      ]
+    }
+  ]
+}

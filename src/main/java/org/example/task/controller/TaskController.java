@@ -1,39 +1,42 @@
 package org.example.task.controller;
 
-import org.example.task.model.Task;
-import org.example.task.model.request.TaskRequest;
+import org.example.task.model.task.Tasks;
+import org.example.task.payload.task.TaskDto;
+import org.example.task.payload.task.TaskRequest;
 import org.example.task.service.task.TaskService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/tasks")
+@RequestMapping("/tasks")
 @CrossOrigin
-public class Controller {
+public class TaskController {
     private final TaskService service;
 
-    public Controller(TaskService service) {
+    public TaskController(TaskService service) {
         this.service = service;
     }
 
     @GetMapping
-    public List<Task> getAllTasks(){
+    public List<Tasks> getAllTasks(){
         return service.getAllTask();
     }
 
     @GetMapping("/{id}")
-    public List<Task> getById(@PathVariable Long id){
+    public List<Tasks> getById(@PathVariable Long id){
         return service.getById(id);
     }
 
     @PostMapping
-    public Task addTask(@RequestBody TaskRequest taskRequest){
-        return service.addTask(taskRequest);
+    public ResponseEntity<TaskDto> createTask(@RequestBody Tasks task){
+        TaskDto taskDto = service.createTask(task);
+        return ResponseEntity.ok(taskDto);
     }
 
     @PutMapping("/{id}")
-    public Task updateTask(@PathVariable Long id, @RequestBody TaskRequest taskRequest){
+    public Tasks updateTask(@PathVariable Long id, @RequestBody TaskRequest taskRequest){
         return service.updateTask(id, taskRequest).orElseThrow(()-> new RuntimeException("Task not found!"));
     }
 
@@ -43,7 +46,7 @@ public class Controller {
     }
 
     @PatchMapping("/{id}/complete")
-    public Task toggleCompleted(@PathVariable Long id){
+    public Tasks toggleCompleted(@PathVariable Long id){
         return service.toggleCompleted(id);
     }
 }

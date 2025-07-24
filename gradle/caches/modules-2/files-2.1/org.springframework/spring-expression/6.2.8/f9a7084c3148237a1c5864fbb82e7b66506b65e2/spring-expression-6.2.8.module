@@ -1,0 +1,82 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "group": "org.springframework",
+    "module": "spring-expression",
+    "version": "6.2.8",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "8.14.2"
+    }
+  },
+  "variants": [
+    {
+      "name": "apiElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.environment": "standard-jvm",
+        "org.gradle.jvm.version": 17,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-api",
+        "org.jetbrains.kotlin.platform.type": "jvm"
+      },
+      "dependencies": [
+        {
+          "group": "org.springframework",
+          "module": "spring-core",
+          "version": {
+            "requires": "6.2.8"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "spring-expression-6.2.8.jar",
+          "url": "spring-expression-6.2.8.jar",
+          "size": 317829,
+          "sha512": "34dfadc2296c950b2bc5fed56fde66dd65377573a7b6c9d697eb87e9f5a48779cd8076b85de9388079c74725d0738bde85e0e6c20870b7a52dec7590a159a1a5",
+          "sha256": "d46b922eb2200710ec5100f00d35fd8786d5e7bc459d09c8bbda32432726a5ba",
+          "sha1": "19e6618120fab6a572880675e1c0af676c7aa4ac",
+          "md5": "23ec813ded72a6784de208373875abc5"
+        }
+      ]
+    },
+    {
+      "name": "runtimeElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.environment": "standard-jvm",
+        "org.gradle.jvm.version": 17,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-runtime",
+        "org.jetbrains.kotlin.platform.type": "jvm"
+      },
+      "dependencies": [
+        {
+          "group": "org.springframework",
+          "module": "spring-core",
+          "version": {
+            "requires": "6.2.8"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "spring-expression-6.2.8.jar",
+          "url": "spring-expression-6.2.8.jar",
+          "size": 317829,
+          "sha512": "34dfadc2296c950b2bc5fed56fde66dd65377573a7b6c9d697eb87e9f5a48779cd8076b85de9388079c74725d0738bde85e0e6c20870b7a52dec7590a159a1a5",
+          "sha256": "d46b922eb2200710ec5100f00d35fd8786d5e7bc459d09c8bbda32432726a5ba",
+          "sha1": "19e6618120fab6a572880675e1c0af676c7aa4ac",
+          "md5": "23ec813ded72a6784de208373875abc5"
+        }
+      ]
+    }
+  ]
+}

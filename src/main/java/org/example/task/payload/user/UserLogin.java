@@ -1,4 +1,4 @@
-package org.example.task.model.request;
+package org.example.task.payload.user;
 
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;

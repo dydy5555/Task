@@ -1,0 +1,96 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "group": "org.springframework",
+    "module": "spring-tx",
+    "version": "6.2.8",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "8.14.2"
+    }
+  },
+  "variants": [
+    {
+      "name": "apiElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.environment": "standard-jvm",
+        "org.gradle.jvm.version": 17,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-api",
+        "org.jetbrains.kotlin.platform.type": "jvm"
+      },
+      "dependencies": [
+        {
+          "group": "org.springframework",
+          "module": "spring-beans",
+          "version": {
+            "requires": "6.2.8"
+          }
+        },
+        {
+          "group": "org.springframework",
+          "module": "spring-core",
+          "version": {
+            "requires": "6.2.8"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "spring-tx-6.2.8.jar",
+          "url": "spring-tx-6.2.8.jar",
+          "size": 285386,
+          "sha512": "665bb9e4a46d8263eee8d7ad2e61bac65e7b149b3094c96b2db7bd173f88bcd99c91d3a6cefc18b2682b4fac32cd9b5a1e2f9b6d92c823da5e4f4de974ab8810",
+          "sha256": "e2a7d229f39b79729e4fef093775d32a03c079e98e6f6c8fddf886700d9d05bf",
+          "sha1": "6b2eecf34f0810dd989f7e7bfa8fd8c86fe28dfb",
+          "md5": "3614412d61e6b4c702e42bacf84230ac"
+        }
+      ]
+    },
+    {
+      "name": "runtimeElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.environment": "standard-jvm",
+        "org.gradle.jvm.version": 17,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-runtime",
+        "org.jetbrains.kotlin.platform.type": "jvm"
+      },
+      "dependencies": [
+        {
+          "group": "org.springframework",
+          "module": "spring-beans",
+          "version": {
+            "requires": "6.2.8"
+          }
+        },
+        {
+          "group": "org.springframework",
+          "module": "spring-core",
+          "version": {
+            "requires": "6.2.8"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "spring-tx-6.2.8.jar",
+          "url": "spring-tx-6.2.8.jar",
+          "size": 285386,
+          "sha512": "665bb9e4a46d8263eee8d7ad2e61bac65e7b149b3094c96b2db7bd173f88bcd99c91d3a6cefc18b2682b4fac32cd9b5a1e2f9b6d92c823da5e4f4de974ab8810",
+          "sha256": "e2a7d229f39b79729e4fef093775d32a03c079e98e6f6c8fddf886700d9d05bf",
+          "sha1": "6b2eecf34f0810dd989f7e7bfa8fd8c86fe28dfb",
+          "md5": "3614412d61e6b4c702e42bacf84230ac"
+        }
+      ]
+    }
+  ]
+}
